@@ -26,7 +26,7 @@ rss_feeds = {
     "Aktuality.sk": "https://www.aktuality.sk/rss/",
     "SME.sk": "https://www.sme.sk/rss",
     "DenníkN": "https://dennikn.sk/feed/",
-    "Pravda.sk": "https://www.pravda.sk/rss",
+    "Pravda.sk": "https://www.spravy.pravda.sk/rss",
     "HN Online": "https://www.hnonline.sk/rss"
 }
 
