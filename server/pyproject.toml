@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "slovak_feed_sentinel"}]
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = ">=3.9,<4.0"
 requests = "^2.32.3"
 feedparser = "^6.0.11"
 pandas = "^2.2.3"
