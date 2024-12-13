@@ -8,6 +8,7 @@ from psycopg2.extras import execute_values
 from datetime import datetime
 import warnings
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from datetime import datetime
 
 # Suppress the warning
 warnings.simplefilter('ignore', InsecureRequestWarning)
@@ -44,6 +45,16 @@ def connect_to_db():
         print(f"Error connecting to database: {e}")
         return None
 
+# Function to parse date strings
+def parse_date(date_str):
+    try:
+        # Try ISO 8601 parsing
+        return datetime.fromisoformat(date_str)
+    except ValueError:
+        # Fallback to the original format if ISO parsing fails
+        return datetime.strptime(date_str, "%a, %d %b %Y %H:%M:%S %z")
+
+
 # Function to insert articles into PostgreSQL
 def insert_articles_to_db(articles):
     conn = connect_to_db()
@@ -76,7 +87,7 @@ def insert_articles_to_db(articles):
                     article["Source"],
                     article["Title"],
                     article["Link"],
-                    datetime.strptime(article["Published"], "%a, %d %b %Y %H:%M:%S %z") if article["Published"] else None,
+                    parse_date(article["Published"]) if article["Published"] else None,
                     article["Summary"],
                     article["Category"]
                 )
